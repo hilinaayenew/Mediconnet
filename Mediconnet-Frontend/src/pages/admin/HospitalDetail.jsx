@@ -153,6 +153,8 @@ const isInOurSystem = hospital.isInOurSystem
           </Button>
           <div>
             <h1 className="text-2xl font-bold">{hospital.name}</h1>
+            <h1 className="text-1xl font-bold">Hospital Id: {hospital._id}</h1>
+            
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="flex items-center gap-1">
                 {hospital.hospitalType ? (
