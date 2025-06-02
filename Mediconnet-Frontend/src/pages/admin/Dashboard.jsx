@@ -17,7 +17,7 @@ import {
   ResponsiveContainer,
   Cell
 } from 'recharts'
-
+import { BASE_URL } from "@/lib/utils"
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const { data } = await axios.get("https://mediconnet-backend.onrender.com/api/system-admin/summaryHospitals", {
+        const { data } = await axios.get(`${BASE_URL}/system-admin/summaryHospitals`, {
           withCredentials: true,
         });
         
