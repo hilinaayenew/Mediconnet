@@ -244,7 +244,7 @@ const isInOurSystem = hospital.isInOurSystem
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <StatCard 
-              title="Total Staff" 
+              title="Total Medical Staff" 
               value={Object.values(roleCounts).reduce((a, b) => a + b, 0)} 
               icon={<Users className="h-5 w-5" />} 
               color="blue"
@@ -273,7 +273,7 @@ const isInOurSystem = hospital.isInOurSystem
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="w-full justify-start">
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="staff">Staff</TabsTrigger>
+              <TabsTrigger value="staff">Medical Staff</TabsTrigger>
               <TabsTrigger value="roles">Roles Breakdown</TabsTrigger>
             </TabsList>
 
@@ -289,7 +289,7 @@ const isInOurSystem = hospital.isInOurSystem
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <PieChartIcon className="h-5 w-5" />
-                    Staff Role Distribution
+                    Medical Staff Role Distribution
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="h-[300px]">
@@ -315,7 +315,7 @@ const isInOurSystem = hospital.isInOurSystem
                     </ResponsiveContainer>
                   ) : (
                     <div className="h-full flex items-center justify-center text-muted-foreground">
-                      No staff data available
+                      No Medical Staff data available
                     </div>
                   )}
                 </CardContent>
@@ -532,7 +532,7 @@ const RecentActivityCard = ({ staff, navigate }) => (
         <Activity className="h-5 w-5 text-primary" />
         Recent Activity
       </CardTitle>
-      <CardDescription>Last 5 staff logins</CardDescription>
+      <CardDescription>Last 5 medical staff logins</CardDescription>
     </CardHeader>
     <CardContent>
       <div className="space-y-4">
@@ -562,7 +562,7 @@ const RecentActivityCard = ({ staff, navigate }) => (
         ))}
         {staff.length === 0 && (
           <p className="text-sm text-muted-foreground text-center py-4">
-            No staff activity to display
+            No medical staff activity to display
           </p>
         )}
       </div>
@@ -573,9 +573,9 @@ const RecentActivityCard = ({ staff, navigate }) => (
 const StaffTable = ({ staff, hospitalName, navigate }) => (
   <Card>
     <CardHeader>
-      <CardTitle>Staff Members</CardTitle>
+      <CardTitle>Medical Staff Members</CardTitle>
       <CardDescription>
-        Showing {staff.length} staff member{staff.length !== 1 ? 's' : ''} at {hospitalName}
+        Showing {staff.length} Medical Staff member{staff.length !== 1 ? 's' : ''} at {hospitalName}
       </CardDescription>
     </CardHeader>
     <CardContent>
@@ -583,7 +583,7 @@ const StaffTable = ({ staff, hospitalName, navigate }) => (
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Staff Member</TableHead>
+              <TableHead>Medical Staff Member</TableHead>
               <TableHead>Role</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Last Activity</TableHead>
@@ -665,7 +665,7 @@ const StaffTable = ({ staff, hospitalName, navigate }) => (
                 <TableCell colSpan={5} className="text-center py-12">
                   <div className="flex flex-col items-center gap-3">
                     <Users className="h-10 w-10 text-gray-400" />
-                    <p className="text-gray-500">No staff members found</p>
+                    <p className="text-gray-500">No medical staff members found</p>
                   </div>
                 </TableCell>
               </TableRow>

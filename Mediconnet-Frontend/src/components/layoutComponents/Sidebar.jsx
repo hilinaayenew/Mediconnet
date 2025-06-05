@@ -52,25 +52,21 @@ const roleBasedMenuItems = {
       icon: <LayoutDashboard className="w-5 h-5" />,
     },
     {
-    name: "All Staff",
+    name: "All Medical Staff",
       path: "/hospital-admin/staff-management",
       icon: <Users className="w-5 h-5" />,
     },
     {
-      name: "Staff Management",
+      name: "Medical Staff Management",
       path: "/hospital-admin/staff-management",
       icon: <Users className="w-5 h-5" />,
       subLinks: [
         { 
-          name: "Add Staff", 
+          name: "Add Medical Staff", 
           path: "/hospital-admin/add-staff",
           icon: <UserPlus className="w-4 h-4" /> 
         },
-        { 
-          name: "View Staff", 
-          path: "/hospital-admin/edit-staff",
-          icon: <UserRound className="w-4 h-4" /> 
-        },
+        
       ],
     },
     {

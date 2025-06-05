@@ -8,9 +8,10 @@ const authenticateHospital = async (req, res, next) => {
       return res.status(401).json({ error: 'API key and hospital ID are required' });
     }
 
+
     console.log('Hospital ID:', hospitalID);
 
-    const hospital = await Hospital.findById(hospitalID);
+    const hospital = await Hospital.findById({ _id: ObjectId(hospitalID)});
     console.log('Hospital:', hospital);
 
     if (!hospital) {
