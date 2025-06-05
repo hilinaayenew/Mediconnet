@@ -25,7 +25,7 @@ const userSchema = new Schema(
   },
   { discriminatorKey: "role" }
 );
-userSchema.index({ email: 1, role: 1 }, { unique: true });
+
 
 // Check if the model has already been defined
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
