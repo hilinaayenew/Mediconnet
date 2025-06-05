@@ -9,13 +9,16 @@ const authenticateHospital = async (req, res, next) => {
     if (!secretKey || !hospitalID) {
       return res.status(401).json({ error: 'API key and hospital ID are required' });
     }
+    consolde.log(hospitalID)
 
     if (!mongoose.Types.ObjectId.isValid(hospitalID)) {
       return res.status(400).json({ error: 'Invalid hospital ID format' });
     }
 
     const hospital = await Hospital.findById(hospitalID);
+    console.log(hospital)
     if (!hospital) {
+      consolde.log(hospitalID)
       return res.status(404).json({ error: 'Hospital not found' });
     }
 
