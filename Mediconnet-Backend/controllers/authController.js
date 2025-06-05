@@ -110,8 +110,7 @@ if(!user){
         msg: "Invalid password. Please try again.",
       });
     }
-    console.log("hi")
-
+    
     if (user.role !== role) {
       return res.status(403).json({
         success: false,

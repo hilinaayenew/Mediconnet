@@ -2,8 +2,9 @@ const Hospital = require('../models/hospital');
 
 const authenticateHospital = async (req, res, next) => {
   try {
+   
     const secretKey = req.headers['x-api-key'];
-    const hospitalID = req.headers['hospitalid']; 
+    const hospitalID = req.headers['hospitalID']; 
     if (!secretKey || !hospitalID) {
       return res.status(401).json({ error: 'API key and hospital ID are required' });
     }

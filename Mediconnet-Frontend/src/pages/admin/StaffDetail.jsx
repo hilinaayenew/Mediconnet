@@ -34,8 +34,8 @@ const StaffDetail = () => {
         })
         setStaff(response.data)
       } catch (err) {
-        console.error("Error fetching staff details:", err)
-        setError(err.response?.data?.msg || "Failed to load staff details")
+        console.error("Error fetching medical staff details:", err)
+        setError(err.response?.data?.msg || "Failed to load medical staff details")
       } finally {
         setLoading(false)
       }
@@ -86,7 +86,7 @@ const StaffDetail = () => {
           <div>
             <h1 className="text-2xl font-bold">Staff Management</h1>
             <p className="text-sm text-muted-foreground">
-              Detailed view of staff member information
+              Detailed view of medical staff member information
             </p>
           </div>
         </div>
@@ -214,7 +214,7 @@ const StaffDetail = () => {
             <CardHeader>
               <CardTitle>Activity Log</CardTitle>
               <CardDescription>
-                Recent activities and access history for this staff member
+                Recent activities and access history for this medical staff member
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -292,7 +292,7 @@ const ErrorDisplay = ({ error, navigate }) => (
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back
       </Button>
-      <h1 className="text-2xl font-bold">Error Loading Staff</h1>
+      <h1 className="text-2xl font-bold">Error Loading Medical Staff</h1>
     </div>
     <div className="text-red-500 p-4 border rounded-md bg-red-50">
       {error}
@@ -310,7 +310,7 @@ const NotFound = ({ navigate }) => (
       </Button>
       <h1 className="text-2xl font-bold">Staff Not Found</h1>
     </div>
-    <p>The requested staff member could not be found.</p>
+    <p>The requested medical staff member could not be found.</p>
   </div>
 )
 

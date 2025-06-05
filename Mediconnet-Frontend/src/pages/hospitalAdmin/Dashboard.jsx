@@ -68,7 +68,7 @@ export default function StaffDashboard() {
       HospitalAdministrator: "Hospital Admin",
       Doctor: "Doctor",
       Nurse: "Nurse",
-      Staff: "Staff Member"
+      Staff: "Medical Staff Member"
     }
     
     return (
@@ -86,7 +86,7 @@ export default function StaffDashboard() {
     <div className="space-y-6 p-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold tracking-tight">
-          {userData.role === 'HospitalAdministrator' ? 'Admin' : 'Staff'} Dashboard
+          {userData.role === 'HospitalAdministrator' ? 'Admin' : 'Medical Staff'} Dashboard
         </h1>
         <div className="text-sm text-muted-foreground">
           Member since {formatDate(userData.createdAt)}
@@ -259,7 +259,7 @@ function NoDataDisplay() {
     <div className="p-6 max-w-7xl mx-auto space-y-4">
       <h1 className="text-2xl font-bold">No Data Available</h1>
       <div className="p-4 border rounded-lg bg-muted/50">
-        <p>Could not load staff information.</p>
+        <p>Could not load medical staff information.</p>
         <p className="text-sm mt-2">Please check your permissions or try refreshing the page.</p>
       </div>
     </div>

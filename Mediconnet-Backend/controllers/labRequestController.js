@@ -6,7 +6,7 @@ const Patient = require('../models/patient');
 const getLabRequests = async (req, res) => {
   try {
     const { hospitalID } = req.user.hospitalID;
-    console.log(req.user.hospitalID) // Using hospitalID from the authenticated user
+   
     
     let query = { 
       'patientID.registeredHospital': hospitalID 
@@ -47,7 +47,7 @@ const getLabRequests = async (req, res) => {
 const getLabRequestDetails = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id)
+   
     
     const labRequest = await LabRequest.findById(id)
       .populate('patientID', 'faydaID firstName lastName gender dateOfBirth bloodGroup')

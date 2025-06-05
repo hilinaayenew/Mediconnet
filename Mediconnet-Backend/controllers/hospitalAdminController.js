@@ -218,7 +218,7 @@ const getHospitalDetails = async (req, res) => {
 
 const getStaffAccounts = async (req, res) => {
   try {
-    console.log(req.user.hospitalID)
+    
 
     const staffs = await User.find({ hospitalID: req.user.hospitalID });
 

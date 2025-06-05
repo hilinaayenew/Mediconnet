@@ -11,7 +11,7 @@ const EditViewStaff = () => {
       <h1 className="text-2xl font-bold">Edit View Staff</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Staff List</CardTitle>
+          <CardTitle>Medical Staff List</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>

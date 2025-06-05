@@ -32,7 +32,7 @@ const StaffManagement = () => {
         
         setStaff(data);
       } catch (error) {
-        console.error("Error fetching staff:", error);
+        console.error("Error fetching medical staff:", error);
       } finally {
         setLoading(false);
       }
@@ -120,13 +120,13 @@ const StaffManagement = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  {role === "all" ? "All Staff" : `${role}s`}
+                  {role === "all" ? "All Medical Staff" : `${role}s`}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {loading ? (
                   <div className="flex justify-center py-8">
-                    <p>Loading staff...</p>
+                    <p>Loading medical staff...</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -174,7 +174,7 @@ const StaffManagement = () => {
                 )}
                 {!loading && filteredStaff.length === 0 && (
                   <div className="text-center py-8 text-muted-foreground">
-                    No staff members found
+                    No medical staff members found
                   </div>
                 )}
               </CardContent>

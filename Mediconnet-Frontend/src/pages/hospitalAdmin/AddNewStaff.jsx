@@ -134,14 +134,14 @@ export default function AddStaffForm() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to add staff");
+        throw new Error(errorData.message || "Failed to add medical staff");
       }
 
       toast.success(`${data.role} added successfully!`);
       form.reset();
     } catch (error) {
-      console.error("Error adding staff:", error);
-      toast.error(error.message || "Failed to add staff");
+      console.error("Error adding medical staff:", error);
+      toast.error(error.message || "Failed to add medicalstaff");
     } finally {
       setLoading(false);
     }
@@ -202,7 +202,7 @@ export default function AddStaffForm() {
       <h1 className="text-2xl font-bold">Add New Staff Member</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Staff Information</CardTitle>
+          <CardTitle>Medical Staff Information</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -216,7 +216,7 @@ export default function AddStaffForm() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select staff role" />
+                          <SelectValue placeholder="Select medical staff role" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -302,7 +302,7 @@ export default function AddStaffForm() {
 
               <div className="flex justify-end">
                 <Button type="submit" disabled={loading}>
-                  {loading ? "Adding Staff..." : "Add Staff Member"}
+                  {loading ? "Adding Medical Staff..." : "Add Medical Staff Member"}
                 </Button>
               </div>
             </form>
