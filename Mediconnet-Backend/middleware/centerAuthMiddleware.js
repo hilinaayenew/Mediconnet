@@ -19,7 +19,7 @@ const authenticateHospital = async (req, res, next) => {
     console.log(hospital)
     if (!hospital) {
       consolde.log(hospitalID)
-      return res.status(404).json({ error: `Hospital not found ${hospitalID}` });
+      return res.status(404).json({ error: `Hospital not found` });
     }
 
     if (secretKey !== hospital.secretKey) {

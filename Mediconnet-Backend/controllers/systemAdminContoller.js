@@ -94,7 +94,7 @@ const addHospitalAdmin = async (req, res) => {
     // Check if hospital exists
     const hospital = await Hospital.findById(hospitalObjectId);
     if (!hospital) {
-      return res.status(404).json({ msg: "Hospital not found 2" });
+      return res.status(404).json({ msg: "Hospital not found" });
     }
 
     // Check if email already exists
@@ -203,7 +203,7 @@ const getHospitalDetails = async (req, res) => {
 
 
     if (!hospital) {
-      return res.status(404).json({ msg: "Hospital not found 1" });
+      return res.status(404).json({ msg: "Hospital not found" });
     }
 
     if(hospital.isInOurSystem){

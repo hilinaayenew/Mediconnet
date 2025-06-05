@@ -157,7 +157,7 @@ const getHospitalDetails = async (req, res) => {
 
     const hospital = await Hospital.findById(id);
     if (!hospital) {
-      return res.status(404).json({ msg: "Hospital not found 3" });
+      return res.status(404).json({ msg: "Hospital not found" });
     }
 
     // Get all staff for this hospital (excluding system Admins)
