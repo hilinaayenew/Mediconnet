@@ -10,6 +10,7 @@ const authenticateHospital = async (req, res, next) => {
 
     console.log('Hospital ID:', hospitalID);
 
+    
     const hospital = await Hospital.findById(hospitalID);
     console.log('Hospital:', hospital);
 
