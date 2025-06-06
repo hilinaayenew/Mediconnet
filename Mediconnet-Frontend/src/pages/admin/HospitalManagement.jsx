@@ -103,8 +103,7 @@ const HospitalManagement = () => {
             <TableRow>
               <TableHead className="w-[30%]">Hospital</TableHead>
               <TableHead>Location</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Last Updated</TableHead>
+             
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -150,17 +149,8 @@ const HospitalManagement = () => {
                       <span className="text-muted-foreground">{hospital.location}</span>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    <Badge 
-                      variant={hospital.status === "active" ? "default" : "destructive"}
-                      className="capitalize px-2 py-1 text-xs"
-                    >
-                      {hospital.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    {new Date(hospital.updatedAt || hospital.createdAt).toLocaleDateString()}
-                  </TableCell>
+                  
+                  
                   <TableCell className="text-right">
                     <div className="flex justify-end items-center gap-2">
                       <Button 

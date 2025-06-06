@@ -551,9 +551,7 @@ const RecentActivityCard = ({ staff, navigate }) => (
               <p className="font-medium text-sm">
                 {member.firstName} {member.lastName}
               </p>
-              <p className="text-xs text-muted-foreground">
-                {member.lastLogin ? getTimeSince(member.lastLogin) : "Never logged in"}
-              </p>
+              
             </div>
             <Badge variant="outline" className="capitalize">
               {member.role}
