@@ -19,7 +19,6 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import {BASE_URL} from '@/lib/utils';
 const { Option } = Select;
-const { TextArea } = Input;
 const { Title, Text } = Typography;
 
 const NewRegistration = () => {
@@ -29,6 +28,23 @@ const NewRegistration = () => {
   const [error, setError] = useState(null);
   const [hospitalID, setHospitalID] = useState(null);
   const navigate = useNavigate();
+
+  // List of Ethiopian regions and chartered cities
+  const ethiopianRegions = [
+    'Addis Ababa',
+    'Afar',
+    'Amhara',
+    'Benishangul-Gumuz',
+    'Dire Dawa',
+    'Gambela',
+    'Harari',
+    'Oromia',
+    'Sidama',
+    'Somali',
+    'South West Ethiopia Peoples',
+    'Southern Nations, Nationalities, and Peoples',
+    'Tigray'
+  ];
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -45,7 +61,6 @@ const NewRegistration = () => {
         if (!userData.hospitalId) {
           throw new Error("Hospital ID not found in user data");
         }
-        
         
         setHospitalID(userData.hospitalId);
         setLoading(false);
@@ -311,7 +326,7 @@ const NewRegistration = () => {
               </Col>
               <Col span={12}>
                 <Form.Item
-                  label="Contact Number"
+                  label="Phone Number"
                   name="contactNumber"
                   rules={[
                     { required: true },
@@ -323,29 +338,27 @@ const NewRegistration = () => {
                     placeholder="Patient's phone number" 
                     size="large" 
                     allowClear
-                    addonBefore="+1"
+                    addonBefore="+251"
                   />
                 </Form.Item>
               </Col>
             </Row>
 
             <Form.Item
-              label="Full Address"
-              name="address"
-              rules={[
-                { required: true, message: 'Please input address!' },
-                { min: 10, message: 'Address must be at least 10 characters' },
-                { max: 200, message: 'Address cannot exceed 200 characters' }
-              ]}
+              label="Region/City"
+              name="region"
+              rules={[{ required: true, message: 'Please select a region or city!' }]}
             >
-              <TextArea 
-                rows={3} 
-                placeholder="Street address, city, state, and postal code" 
-                size="large" 
-                allowClear
-                showCount
-                maxLength={200}
-              />
+              <Select 
+                placeholder="Select region or city" 
+                size="large"
+                optionFilterProp="children"
+                showSearch
+              >
+                {ethiopianRegions.map(region => (
+                  <Option key={region} value={region}>{region}</Option>
+                ))}
+              </Select>
             </Form.Item>
 
             <Title level={4} style={{ marginBottom: '24px', color: '#1890ff' }}>
@@ -404,33 +417,13 @@ const NewRegistration = () => {
                     placeholder="Contact's phone number" 
                     size="large" 
                     allowClear
-                    addonBefore="+1"
+                    addonBefore="+251"
                   />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Title level={4} style={{ marginBottom: '24px', color: '#1890ff' }}>
-              Medical Information
-            </Title>
-
-            <Form.Item
-              label={<Text>Medical History <Text type="secondary">(Optional)</Text></Text>}
-              name="medicalHistory"
-              rules={[
-                { max: 500, message: 'Medical history cannot exceed 500 characters' }
-              ]}
-            >
-              <TextArea 
-                rows={4} 
-                placeholder="Known medical conditions, allergies, current medications, etc." 
-                size="large" 
-                allowClear
-                showCount
-                maxLength={500}
-              />
-            </Form.Item>
-
+           
             <Form.Item style={{ marginTop: '32px', textAlign: 'center' }}>
               <Button 
                 type="primary" 

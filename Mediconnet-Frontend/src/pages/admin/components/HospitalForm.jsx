@@ -4,17 +4,31 @@ import { useState } from "react"
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
 import { Label } from "../../../components/ui/label"
-import { Textarea } from "../../../components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import { ArrowRight } from "lucide-react"
+
+const ethiopianRegions = [
+  "Addis Ababa",
+  "Dire Dawa",
+  "Afar",
+  "Amhara",
+  "Benishangul-Gumuz",
+  "Gambela",
+  "Harari",
+  "Oromia",
+  "Sidama",
+  "Somali",
+  "South West Ethiopia Peoples",
+  "Southern Nations, Nationalities, and Peoples",
+  "Tigray"
+]
 
 const HospitalForm = ({ onHospitalCreated }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     location: "",
-    address: "",
     contactPerson: "",
     contactEmail: "",
     contactPhone: "",
@@ -77,13 +91,19 @@ const HospitalForm = ({ onHospitalCreated }) => {
 
             <div className="space-y-2">
               <Label htmlFor="location">City/Region</Label>
-              <Input id="location" name="location" value={formData.location} onChange={handleChange} required />
+              <Select value={formData.location} onValueChange={(value) => handleSelectChange("location", value)} required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select city/region" />
+                </SelectTrigger>
+                <SelectContent>
+                  {ethiopianRegions.map((region) => (
+                    <SelectItem key={region} value={region}>
+                      {region}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="address">Full Address</Label>
-            <Textarea id="address" name="address" value={formData.address} onChange={handleChange} required />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -113,7 +133,7 @@ const HospitalForm = ({ onHospitalCreated }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="contactPhone">Contact Phone</Label>
+              <Label htmlFor="contactPhone">Phone Number</Label>
               <Input
                 id="contactPhone"
                 name="contactPhone"
@@ -122,7 +142,6 @@ const HospitalForm = ({ onHospitalCreated }) => {
                 required
               />
             </div>
-
 
             <div className="space-y-2">
               <Label htmlFor="type">Hospital Type</Label>

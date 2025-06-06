@@ -41,10 +41,19 @@ import PatientRecordDetail from "./pages/hospitalAdmin/PatientRecordDetail";
 import PharmacistPatientList from "./pages/Pharmacist/PharmacistPatientList";
 import PharmacistPateintDetail from "./pages/Pharmacist/PharmacistPateintDetail";
 import HospitalAdminListOfPatient from "./pages/hospitalAdmin/HospitalAdminListOfPatient";
+import { roleRedirects } from "./lib/role";
 
 const AppRoutes = ({ userRole }) => {
+
+ const getDashboardRoute = () => {
+    return roleRedirects[userRole] || "/login";
+  };
+
   return (
     <Routes>
+
+      <Route path="/" element={<Navigate to={getDashboardRoute()} />} />
+
       {/* Admin Routes */}
       {userRole === "Admin" && (
         <>

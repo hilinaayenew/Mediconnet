@@ -60,14 +60,14 @@ export default function StaffDashboard() {
     const roleColors = {
       HospitalAdministrator: "bg-purple-100 text-purple-800",
       Doctor: "bg-blue-100 text-blue-800",
-      Nurse: "bg-pink-100 text-pink-800",
+     
       Staff: "bg-green-100 text-green-800"
     }
     
     const roleNames = {
       HospitalAdministrator: "Hospital Admin",
       Doctor: "Doctor",
-      Nurse: "Nurse",
+      
       Staff: "Medical Staff Member"
     }
     
@@ -137,17 +137,7 @@ export default function StaffDashboard() {
                   title="Gender"
                   value={userData.gender || "N/A"}
                 />
-                <InfoItem 
-                  icon={<Phone className="h-5 w-5" />}
-                  title="Contact Number"
-                  value={userData.contactNumber || "N/A"}
-                />
-                <InfoItem 
-                  icon={<MapPin className="h-5 w-5" />}
-                  title="Address"
-                  value={userData.address || "N/A"}
-                  colSpan="md:col-span-2"
-                />
+               
               </div>
             </div>
           </CardContent>
@@ -178,7 +168,7 @@ export default function StaffDashboard() {
               />
               <InfoItem 
                 icon={<Phone className="h-5 w-5" />}
-                title="Contact Number"
+                title="Phone Number"
                 value={hospitalData?.contactNumber || userData.hospitalID?.contactNumber || "N/A"}
               />
               {hospitalData?.licenseNumber && (

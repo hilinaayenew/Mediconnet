@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -40,6 +40,12 @@ const AddAdmin = () => {
       dateOfBirth: "",
     }
   ]);
+  const [errors, setErrors] = useState([
+    {
+      dateOfBirth: "",
+      passwordMismatch: "",
+    }
+  ]);
 
   const handleAdminChange = (index, e) => {
     const { name, value } = e.target;
@@ -50,6 +56,15 @@ const AddAdmin = () => {
         [name]: value
       };
       return updatedAdmins;
+    });
+    // Clear error when user changes the field
+    setErrors(prev => {
+      const updatedErrors = [...prev];
+      updatedErrors[index] = {
+        ...updatedErrors[index],
+        [name === "dateOfBirth" ? "dateOfBirth" : "passwordMismatch"]: ""
+      };
+      return updatedErrors;
     });
   };
 
@@ -77,24 +92,66 @@ const AddAdmin = () => {
         dateOfBirth: "",
       }
     ]);
+    setErrors(prev => [
+      ...prev,
+      {
+        dateOfBirth: "",
+        passwordMismatch: "",
+      }
+    ]);
   };
 
   const removeAdminForm = (index) => {
     if (admins.length > 1) {
       setAdmins(prev => prev.filter((_, i) => i !== index));
+      setErrors(prev => prev.filter((_, i) => i !== index));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    let hasErrors = false;
 
-    for (const admin of admins) {
+    // Initialize errors array
+    const newErrors = admins.map(() => ({
+      dateOfBirth: "",
+      passwordMismatch: "",
+    }));
+
+    // Validate passwords
+    for (const [index, admin] of admins.entries()) {
       if (admin.password !== admin.confirmPassword) {
-        toast.error("Passwords do not match for one or more admins");
-        setIsSubmitting(false);
-        return;
+        newErrors[index].passwordMismatch = "Passwords do not match";
+        hasErrors = true;
       }
+    }
+
+    // Validate age (must be at least 21 years old)
+    const today = new Date("2025-06-06");
+    for (const [index, admin] of admins.entries()) {
+      if (!admin.dateOfBirth) {
+        newErrors[index].dateOfBirth = "Date of birth is required";
+        hasErrors = true;
+      } else {
+        const dob = new Date(admin.dateOfBirth);
+        const age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        const dayDiff = today.getDate() - dob.getDate();
+        // Adjust age if birthday hasn't occurred this year
+        const adjustedAge = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
+        if (adjustedAge < 21) {
+          newErrors[index].dateOfBirth = "Administrator must be at least 21 years old";
+          hasErrors = true;
+        }
+      }
+    }
+
+    setErrors(newErrors);
+
+    if (hasErrors) {
+      setIsSubmitting(false);
+      return;
     }
 
     try {
@@ -213,6 +270,9 @@ const AddAdmin = () => {
                         onChange={(e) => handleAdminChange(index, e)}
                         required
                       />
+                      {errors[index].passwordMismatch && (
+                        <p className="text-sm text-red-500">{errors[index].passwordMismatch}</p>
+                      )}
                     </div>
                   </div>
 
@@ -226,6 +286,9 @@ const AddAdmin = () => {
                         onChange={(e) => handleAdminChange(index, e)}
                         required
                       />
+                      {errors[index].dateOfBirth && (
+                        <p className="text-sm text-red-500">{errors[index].dateOfBirth}</p>
+                      )}
                     </div>
 
                     <div className="space-y-2">

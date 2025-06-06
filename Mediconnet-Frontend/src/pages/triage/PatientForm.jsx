@@ -164,9 +164,7 @@ const ProcessPatient = () => {
                 <Badge variant="outline">
                   {patient.gender || '--'}
                 </Badge>
-                <Badge variant="outline">
-                  {patient.age ? `${patient.age} yrs` : 'Age N/A'}
-                </Badge>
+                
               </div>
             </div>
           </CardTitle>
@@ -176,8 +174,8 @@ const ProcessPatient = () => {
             <div className="space-y-2">
               <h3 className="text-sm font-medium text-muted-foreground">Basic Information</h3>
               <div className="space-y-1 text-sm">
-                <p><span className="font-medium">Contact:</span> {patient.contactNumber || '--'}</p>
-                <p><span className="font-medium">Registered:</span> {new Date(patient.createdAt).toLocaleDateString()}</p>
+                <p><span className="font-medium">Phone Number:</span> {patient.contactNumber || '--'}</p>
+                
               </div>
             </div>
 
@@ -192,7 +190,7 @@ const ProcessPatient = () => {
             <div className="space-y-2">
               <h3 className="text-sm font-medium text-muted-foreground">Medical Information</h3>
               <div className="space-y-1 text-sm">
-                <p><span className="font-medium">Blood Group:</span> {patient.bloodGroup || '--'}</p>
+               
                 <p><span className="font-medium">Allergies:</span> {patient.allergies || 'None'}</p>
               </div>
             </div>

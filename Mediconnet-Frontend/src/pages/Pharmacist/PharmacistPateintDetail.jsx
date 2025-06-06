@@ -180,32 +180,7 @@ const PharmacistPatientDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t">
-              <div>
-                <p className="text-sm text-muted-foreground">Contact</p>
-                <p className="font-medium">{patient.contactNumber}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Status</p>
-                <Badge variant={
-                  patient.status === 'Active' ? 'default' :
-                  patient.status === 'In-Treatment' ? 'warning' :
-                  patient.status === 'Emergency' ? 'destructive' : 'outline'
-                }>
-                  {patient.status}
-                </Badge>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Blood Group</p>
-                <p className="font-medium">{patient.bloodGroup || 'Unknown'}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Emergency Contact</p>
-                <p className="font-medium">
-                  {patient.emergencyContact?.name} ({patient.emergencyContact?.relation})
-                </p>
-              </div>
-            </div>
+            
           </div>
         )}
 

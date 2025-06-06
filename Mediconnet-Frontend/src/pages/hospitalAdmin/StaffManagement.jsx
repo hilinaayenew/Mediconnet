@@ -51,7 +51,7 @@ const StaffManagement = () => {
   const roles = [
     "all",
     "Doctor",
-    "Nurse",
+
     "LabTechnician",
     "Pharmacist",
     "Receptionist",
@@ -62,8 +62,6 @@ const StaffManagement = () => {
     switch (role) {
       case "Doctor":
         return "bg-blue-100 text-blue-800";
-      case "Nurse":
-        return "bg-green-100 text-green-800";
       case "LabTechnician":
         return "bg-purple-100 text-purple-800";
       case "Pharmacist":
@@ -108,7 +106,7 @@ const StaffManagement = () => {
         <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="Doctor">Doctors</TabsTrigger>
-          <TabsTrigger value="Nurse">Nurses</TabsTrigger>
+          
           <TabsTrigger value="LabTechnician">Lab Techs</TabsTrigger>
           <TabsTrigger value="Pharmacist">Pharmacists</TabsTrigger>
           <TabsTrigger value="Receptionist">Reception</TabsTrigger>
@@ -162,11 +160,7 @@ const StaffManagement = () => {
                                 <span>{member.specialization}</span>
                               </div>
                             )}
-                            <div className="flex justify-end pt-2">
-                              <Button variant="outline" size="sm">
-                                View Details
-                              </Button>
-                            </div>
+                            
                           </CardContent>
                         </Card>
                       ))}

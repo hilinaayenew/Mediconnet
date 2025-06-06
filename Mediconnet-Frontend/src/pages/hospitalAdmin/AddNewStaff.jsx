@@ -17,7 +17,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BASE_URL } from "@/lib/utils";
 import { toast } from "react-toastify";
 import ImageUpload from "@/components/ImageUpload";
-
 import {
   Select,
   SelectContent,
@@ -70,11 +69,45 @@ const staffSchema = z
         message: "Specialization is required",
       });
     }
+    // Validate dateOfBirth to ensure age is at least 21 years
+    if (data.dateOfBirth) {
+      const dob = new Date(data.dateOfBirth);
+      const today = new Date("2025-06-06"); // Current date
+      const age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      const dayDiff = today.getDate() - dob.getDate();
+      // Adjust age if birthday hasn't occurred this year
+      const adjustedAge = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age;
+      if (adjustedAge < 21) {
+        ctx.addIssue({
+          path: ["dateOfBirth"],
+          code: z.ZodIssueCode.custom,
+          message: "Staff must be at least 21 years old",
+        });
+      }
+    }
   });
 
 export default function AddStaffForm() {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  // List of Ethiopian regions and chartered cities
+  const ethiopianRegions = [
+    "Addis Ababa",
+    "Afar",
+    "Amhara",
+    "Benishangul-Gumuz",
+    "Dire Dawa",
+    "Gambela",
+    "Harari",
+    "Oromia",
+    "Sidama",
+    "Somali",
+    "South West Ethiopia Peoples",
+    "Southern Nations, Nationalities, and Peoples",
+    "Tigray",
+  ];
 
   const form = useForm({
     resolver: zodResolver(staffSchema),
@@ -121,7 +154,7 @@ export default function AddStaffForm() {
         hospitalID: currentUser.hospitalId,
         ...(data.role !== "Doctor" && { specialization: undefined }),
       };
-      console.log("🚀 ~ onSubmit ~ staffData:", staffData)
+      console.log("🚀 ~ onSubmit ~ staffData:", staffData);
 
       const response = await fetch(`${BASE_URL}/hospital-admin/add-staff`, {
         method: "POST",
@@ -141,7 +174,7 @@ export default function AddStaffForm() {
       form.reset();
     } catch (error) {
       console.error("Error adding medical staff:", error);
-      toast.error(error.message || "Failed to add medicalstaff");
+      toast.error(error.message || "Failed to add medical staff");
     } finally {
       setLoading(false);
     }
@@ -157,7 +190,7 @@ export default function AddStaffForm() {
           name="contactNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contact Number</FormLabel>
+              <FormLabel>Phone Number</FormLabel>
               <FormControl>
                 <Input placeholder="+251912345678" {...field} />
               </FormControl>
@@ -170,10 +203,21 @@ export default function AddStaffForm() {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Address</FormLabel>
-              <FormControl>
-                <Input placeholder="Full address" {...field} />
-              </FormControl>
+              <FormLabel>Region/City</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select region or city" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {ethiopianRegions.map((region) => (
+                    <SelectItem key={region} value={region}>
+                      {region}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
@@ -281,21 +325,21 @@ export default function AddStaffForm() {
               </div>
 
               <FormField
-                  control={form.control}
-                  name="profilePhoto"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Profile Photo</FormLabel>
-                      <FormControl>
-                        <ImageUpload 
-                          onChange={field.onChange} 
-                          value={field.value}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                control={form.control}
+                name="profilePhoto"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Profile Photo</FormLabel>
+                    <FormControl>
+                      <ImageUpload 
+                        onChange={field.onChange} 
+                        value={field.value}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               {/* Conditional Fields */}
               {renderRoleSpecificFields()}

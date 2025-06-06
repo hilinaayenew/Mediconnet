@@ -47,7 +47,7 @@ const StaffDetail = () => {
   const getRoleIcon = (role) => {
     const roleIcons = {
       "Doctor": <Stethoscope className="h-5 w-5 text-blue-500" />,
-      "Nurse": <Activity className="h-5 w-5 text-green-500" />,
+     
       "HospitalAdministrator": <ShieldCheck className="h-5 w-5 text-purple-500" />,
       "Receptionist": <User className="h-5 w-5 text-yellow-500" />,
       "Triage": <ClipboardList className="h-5 w-5 text-orange-500" />,

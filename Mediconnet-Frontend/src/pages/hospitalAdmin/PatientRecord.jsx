@@ -94,7 +94,7 @@ const PatientRecords = () => {
             <div className="col-span-3">Name</div>
             <div className="col-span-2">Date of Birth</div>
             <div className="col-span-2">Gender</div>
-            <div className="col-span-2">Blood Group</div>
+            <div className="col-span-2"></div>
             <div className="col-span-1">Actions</div>
           </div>
           {patients.map((patient) => (
@@ -105,7 +105,7 @@ const PatientRecords = () => {
                 {patient.dateOfBirth ? new Date(patient.dateOfBirth).toLocaleDateString() : 'N/A'}
               </div>
               <div className="col-span-2 text-[#16151C]">{patient.gender || 'N/A'}</div>
-              <div className="col-span-2 text-[#16151C]">{patient.bloodGroup || 'N/A'}</div>
+              <div className="col-span-2 text-[#16151C]"></div>
               <div className="col-span-1">
                 <Button
                   size="sm"

@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Stepper } from "@/components/stepper";
 import { BASE_URL } from "@/lib/utils";
@@ -54,6 +53,22 @@ const hospitalTypes = [
   "Skin",
   "ENT", 
   "Rehabilitation"
+];
+
+const ethiopianRegions = [
+  "Addis Ababa",
+  "Dire Dawa",
+  "Afar",
+  "Amhara",
+  "Benishangul-Gumuz",
+  "Gambela",
+  "Harari",
+  "Oromia",
+  "Sidama",
+  "Somali",
+  "South West Ethiopia Peoples",
+  "Southern Nations, Nationalities, and Peoples",
+  "Tigray"
 ];
 
 const hospitalSchema = z.object({
@@ -253,7 +268,7 @@ export default function AddHospital() {
                     <FormItem>
                       <FormLabel className="flex items-center gap-2">
                         <Phone className="h-4 w-4" />
-                        Contact Number *
+                        Phone Number *
                       </FormLabel>
                       <FormControl>
                         <Input 
@@ -279,13 +294,20 @@ export default function AddHospital() {
                         <MapPin className="h-4 w-4" />
                         Location *
                       </FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Full address including city, subcity, and landmark" 
-                          {...field} 
-                          className="focus-visible:ring-primary min-h-[100px]"
-                        />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="focus-visible:ring-primary">
+                            <SelectValue placeholder="Select region or city" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {ethiopianRegions.map((region) => (
+                            <SelectItem key={region} value={region}>
+                              {region}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

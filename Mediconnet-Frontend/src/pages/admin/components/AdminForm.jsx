@@ -5,7 +5,7 @@ import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
 import { Label } from "../../../components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select"
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 import { Save } from "lucide-react"
 
 const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
@@ -22,12 +22,21 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
     role: "HospitalAdministrator",
     hospitalID: hospitalId,
   })
+  const [errors, setErrors] = useState({
+    dateOfBirth: "",
+    passwordMismatch: "",
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }))
+    // Clear error when user changes the field
+    setErrors((prev) => ({
+      ...prev,
+      [name === "dateOfBirth" ? "dateOfBirth" : "passwordMismatch"]: "",
     }))
   }
 
@@ -40,10 +49,40 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    let hasErrors = false
+    const newErrors = {
+      dateOfBirth: "",
+      passwordMismatch: "",
+    }
 
     // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match")
+      newErrors.passwordMismatch = "Passwords do not match"
+      hasErrors = true
+    }
+
+    // Validate age (must be at least 21 years old)
+    if (!formData.dateOfBirth) {
+      newErrors.dateOfBirth = "Date of birth is required"
+      hasErrors = true
+    } else {
+      const dob = new Date(formData.dateOfBirth)
+      const today = new Date("2025-06-06")
+      const age = today.getFullYear() - dob.getFullYear()
+      const monthDiff = today.getMonth() - dob.getMonth()
+      const dayDiff = today.getDate() - dob.getDate()
+      // Adjust age if birthday hasn't occurred this year
+      const adjustedAge = monthDiff < 0 || (monthDiff === 0 && dayDiff < 0) ? age - 1 : age
+      if (adjustedAge < 21) {
+        newErrors.dateOfBirth = "Administrator must be at least 21 years old"
+        hasErrors = true
+      }
+    }
+
+    setErrors(newErrors)
+
+    if (hasErrors) {
+      setIsSubmitting(false)
       return
     }
 
@@ -77,6 +116,10 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
         confirmPassword: "",
         role: "HospitalAdministrator",
         hospitalID: hospitalId,
+      })
+      setErrors({
+        dateOfBirth: "",
+        passwordMismatch: "",
       })
     } catch (error) {
       console.error("Error adding admin:", error)
@@ -125,7 +168,6 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
             </div>
           </div>
 
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="dateOfBirth">Date of Birth</Label>
@@ -137,6 +179,9 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
                 onChange={handleChange}
                 required
               />
+              {errors.dateOfBirth && (
+                <p className="text-sm text-red-500">{errors.dateOfBirth}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -177,6 +222,9 @@ const AdminForm = ({ hospitalId, hospitalName, onAdminCreated, onFinish }) => {
                 onChange={handleChange}
                 required
               />
+              {errors.passwordMismatch && (
+                <p className="text-sm text-red-500">{errors.passwordMismatch}</p>
+              )}
             </div>
           </div>
         </div>

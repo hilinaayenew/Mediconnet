@@ -555,7 +555,7 @@ useEffect(() => {
                 </Badge>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Contact Number</p>
+                <p className="text-sm text-muted-foreground">Phone Number</p>
                 <p className="font-medium">{patient.basicInfo.contactNumber || "N/A"}</p>
               </div>
               <div>

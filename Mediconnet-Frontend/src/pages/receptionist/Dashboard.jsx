@@ -125,7 +125,7 @@ const ReceptionistDashboard = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <InfoRow icon={<Mail />} label="Email" value={receptionistData.email} />
-              <InfoRow icon={<Phone />} label="Contact" value={receptionistData.contactNumber} />
+              <InfoRow icon={<Phone />} label="Phone Number" value={receptionistData.contactNumber} />
               <InfoRow icon={<Cake />} label="Date of Birth" value={formattedDOB} />
               <InfoRow icon={<User />} label="Gender" value={receptionistData.gender} />
               <InfoRow icon={<MapPin />} label="Address" value={receptionistData.address} />
@@ -141,7 +141,7 @@ const ReceptionistDashboard = () => {
                 <>
                   <InfoRow label="Hospital Name" value={receptionistData.hospital.name} />
                   <InfoRow label="Location" value={receptionistData.hospital.location} />
-                  <InfoRow label="Contact" value={receptionistData.hospital.contactNumber} />
+                  <InfoRow label="Phone Number" value={receptionistData.hospital.contactNumber} />
                 </>
               ) : (
                 <p className="text-muted-foreground">Not assigned to any hospital</p>
@@ -152,12 +152,7 @@ const ReceptionistDashboard = () => {
 
         <div className="lg:col-span-2 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <StatCard
-              title="Years of Service"
-              icon={<Calendar className="h-4 w-4 text-muted-foreground" />}
-              value={yearsOfService}
-              description={`Since ${createdAtYear}`}
-            />
+           
             <StatCard
               title="Quick Actions"
               icon={<ClipboardList className="h-4 w-4 text-muted-foreground" />}
@@ -166,23 +161,7 @@ const ReceptionistDashboard = () => {
             />
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Your recent actions in the system</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px] flex items-center justify-center">
-                <div className="text-center">
-                  <ClipboardList className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <h3 className="mt-4 text-lg font-medium">No recent activity</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Your recent actions will appear here.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          
 
           <Card>
             <CardHeader>
@@ -199,14 +178,7 @@ const ReceptionistDashboard = () => {
                   <ClipboardList className="h-6 w-6 mb-2" />
                   <span>Patient Registration</span>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="flex flex-col items-center justify-center h-32"
-                  onClick={() => navigate("/receptionist/appointments")}
-                >
-                  <Calendar className="h-6 w-6 mb-2" />
-                  <span>Manage Appointments</span>
-                </Button>
+                
               </div>
             </CardContent>
           </Card>

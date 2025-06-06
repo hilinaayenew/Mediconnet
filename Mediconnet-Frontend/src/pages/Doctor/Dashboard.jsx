@@ -175,80 +175,12 @@ const DoctorDashboard = () => {
               value={doctorData.assignedPatientID?.length || 0}
               description="Currently under your care"
             />
-            <StatCard
-              title="Years of Service"
-              icon={<Calendar className="h-4 w-4 text-muted-foreground" />}
-              value={yearsOfService}
-              description={`Since ${createdAtYear}`}
-            />
+          
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Upcoming Schedule</CardTitle>
-              <CardDescription>Your appointments and availability</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px] flex items-center justify-center">
-                <div className="text-center">
-                  <Calendar className="mx-auto h-12 w-12 text-muted-foreground" />
-                  <h3 className="mt-4 text-lg font-medium">No upcoming appointments</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    You don't have any appointments scheduled yet.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Patients</CardTitle>
-              <CardDescription>Patients you've recently treated</CardDescription>
-            </CardHeader>
-            <CardContent>
-              {assignedPatients.length > 0 ? (
-                <div className="space-y-4">
-                  {assignedPatients.slice(0, 3).map((patient) => (
-                    <div
-                      key={patient._id}
-                      className="flex items-center gap-4 p-2 hover:bg-muted/50 rounded"
-                    >
-                      <Avatar className="h-9 w-9">
-                        <AvatarFallback>
-                          {patient.firstName?.charAt(0)}
-                          {patient.lastName?.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <p className="font-medium">
-                          {patient.firstName} {patient.lastName}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {patient.faydaID} • {patient.status}
-                        </p>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => navigate(`/doctor/patients/${patient.faydaID}`)}
-                      >
-                        View
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="h-[100px] flex items-center justify-center">
-                  <p className="text-muted-foreground">
-                    {doctorData.assignedPatientID?.length > 0
-                      ? "Failed to load some patients"
-                      : "No assigned patients"}
-                  </p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Building, Users, User, Stethoscope, Activity, UserCog } from "lucide-react"
+import { Building, Users, User, Stethoscope, Activity, UserCog, Printer } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import axios from "axios"
 import {
   PieChart,
@@ -18,6 +19,8 @@ import {
   Cell
 } from 'recharts'
 import { BASE_URL } from "@/lib/utils"
+import { toast } from "react-toastify"
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 const Dashboard = () => {
@@ -65,6 +68,11 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
+  const handlePrintReport = () => {
+    toast.info("Preparing hospital report for printing...");
+    window.print();
+  }
+
   // Prepare data for charts
   const userTypeData = [
     { name: 'Patients', value: stats.userCounts.Patient, icon: <User className="h-4 w-4" /> },
@@ -104,7 +112,16 @@ const Dashboard = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">System Administration Dashboard</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-[#16151C]">System Administration Dashboard</h1>
+        <Button 
+          onClick={handlePrintReport}
+          className="flex items-center gap-2 bg-[#5B8FAA] hover:bg-[#4A7A8C] text-white font-poppins transition-colors duration-200"
+        >
+          <Printer className="w-4 h-4" />
+          Print Report
+        </Button>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <StatCard 

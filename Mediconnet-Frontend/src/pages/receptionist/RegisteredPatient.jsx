@@ -14,6 +14,22 @@ import axios from "axios"
 import { BASE_URL } from "@/lib/utils"
 import moment from "moment"
 
+const ethiopianRegions = [
+  "Addis Ababa",
+  "Dire Dawa",
+  "Afar",
+  "Amhara",
+  "Benishangul-Gumuz",
+  "Gambela",
+  "Harari",
+  "Oromia",
+  "Sidama",
+  "Somali",
+  "South West Ethiopia Peoples",
+  "Southern Nations, Nationalities, and Peoples",
+  "Tigray"
+];
+
 const RegisteredPatient = () => {
   const { faydaID } = useParams()
   const navigate = useNavigate()
@@ -181,7 +197,18 @@ const RegisteredPatient = () => {
             </div>
             <div>
               <Label>Address</Label>
-              <Input value={patient.address} readOnly />
+              <Select value={patient.address || ""} disabled>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select city/region" />
+                </SelectTrigger>
+                <SelectContent>
+                  {ethiopianRegions.map((region) => (
+                    <SelectItem key={region} value={region}>
+                      {region}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
@@ -212,15 +239,7 @@ const RegisteredPatient = () => {
             </div>
           </div>
 
-          <div className="pt-4">
-            <Label>Medical History</Label>
-            <Textarea
-              value={medicalHistory}
-              onChange={(e) => setMedicalHistory(e.target.value)}
-              placeholder="Update medical history if needed"
-              className="mt-2"
-            />
-          </div>
+         
         </CardContent>
         <CardFooter className="flex justify-end">
           <Button onClick={handleSubmit} disabled={submitting}>
