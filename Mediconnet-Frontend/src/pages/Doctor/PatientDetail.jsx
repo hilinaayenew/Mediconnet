@@ -627,7 +627,7 @@ useEffect(() => {
 
       {/* Patient Profile Tab */}
       <TabsContent value="profile" className="pt-6 space-y-6">
-        <Card className="border-0 shadow-sm">
+{/*         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3 border-b">
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5 text-blue-600" />
@@ -678,7 +678,7 @@ useEffect(() => {
               </div>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card className="border-0 shadow-sm">
           <CardHeader className="pb-3 border-b">
