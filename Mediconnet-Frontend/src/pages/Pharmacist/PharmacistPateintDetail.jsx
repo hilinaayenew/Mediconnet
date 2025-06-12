@@ -141,7 +141,7 @@ const PharmacistPatientDetail = () => {
       </div>
 
       <div className="bg-background rounded-lg border shadow-sm p-4">
-{/*         {loading.patient ? (
+        {loading.patient ? (
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <Skeleton className="h-16 w-16 rounded-full" />
@@ -182,7 +182,7 @@ const PharmacistPatientDetail = () => {
             </div>
             
           </div>
-        )} */}
+        )}
 
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4">Prescriptions</h3>
