@@ -167,7 +167,7 @@ const DoctorDashboard = () => {
           </Card>
         </div>
 
-        <div className="lg:col-span-2 space-y-6">
+{/*         <div className="lg:col-span-2 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <StatCard
               title="Assigned Patients"
@@ -176,7 +176,7 @@ const DoctorDashboard = () => {
               description="Currently under your care"
             />
           
-          </div>
+          </div> */}
 
           
 
