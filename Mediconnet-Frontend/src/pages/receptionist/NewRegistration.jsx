@@ -346,7 +346,7 @@ const NewRegistration = () => {
 
             <Form.Item
               label="Region/City"
-              name="region"
+              name="address"
               rules={[{ required: true, message: 'Please select a region or city!' }]}
             >
               <Select 
