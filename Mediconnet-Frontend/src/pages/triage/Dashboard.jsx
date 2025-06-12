@@ -71,31 +71,7 @@ const TriageDashboard = () => {
           </CardFooter>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Available Doctors</CardTitle>
-            <Stethoscope className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {loading ? '--' : stats.doctors}
-            </div>
-            <p className="text-sm text-muted-foreground mt-1">
-              Ready for assignment
-            </p>
-          </CardContent>
-          <CardFooter>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="w-full"
-              onClick={() => navigate('/triage/doctors')}
-            >
-              View Doctors
-            </Button>
-          </CardFooter>
-        </Card>
-
+        
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">In Treatment</CardTitle>
@@ -110,14 +86,7 @@ const TriageDashboard = () => {
             </p>
           </CardContent>
           <CardFooter>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="w-full"
-              onClick={() => navigate('/triage/assigned')}
-            >
-              View Patients
-            </Button>
+            
           </CardFooter>
         </Card>
       </div>
