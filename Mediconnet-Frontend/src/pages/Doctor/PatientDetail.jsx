@@ -1521,7 +1521,7 @@ useEffect(() => {
                           </Badge>
                         </CardHeader>
                         <CardContent>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+{/*                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                               <p className="text-xs font-medium text-gray-500 mb-1">
                                 Priority
@@ -1537,8 +1537,8 @@ useEffect(() => {
                               >
                                 {request.urgency}
                               </Badge>
-                            </div>
-                            <div>
+                            </div> */}
+{/*                             <div>
                               <p className="text-xs font-medium text-gray-500 mb-1">
                                 Requested By
                               </p>
@@ -1546,7 +1546,7 @@ useEffect(() => {
                                 Dr. {request.doctorID?.firstName}{" "}
                                 {request.doctorID?.lastName}
                               </p>
-                            </div>
+                            </div> */}
                           </div>
 
                           {request.instructions && (
